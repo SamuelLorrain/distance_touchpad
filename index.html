@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Distance control</title>
+    </head>
+    <body>
+        <button id="left-click">Left</button>
+        <button id="right-click">Right</button>
+        <button id="middle-click">Middle</button>
+        <button id="scroll-up">Up</button>
+        <button id="scroll-down">Down</button>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            left = document.querySelector('#left-click');
+            middle = document.querySelector('#middle-click');
+            right = document.querySelector('#right-click');
+            scrollUp = document.querySelector('#scroll-up');
+            scrollDown = document.querySelector('#scroll-down');
+
+            var socket = io();
+            left.onclick = function(){
+                socket.emit('mouse_click', 'LEFT_CLICK');
+            };
+            middle.onclick = function(){
+                socket.emit('mouse_click', 'MIDDLE_CLICK');
+            };
+            right.onclick = function(){
+                socket.emit('mouse_click', 'RIGHT_CLICK');
+            };
+            scrollUp.onclick = function(){
+                socket.emit('mouse_click', 'SCROLL_UP');
+            };
+            scrollDown.onclick = function(){
+                socket.emit('mouse_click', 'SCROLL_DOWN');
+            };
+
+        </script>
+    </body>
+</html>
