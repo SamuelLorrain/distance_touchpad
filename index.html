@@ -5,21 +5,37 @@
         <title>Distance control</title>
     </head>
     <body>
-        <button id="left-click">Left</button>
-        <button id="right-click">Right</button>
-        <button id="middle-click">Middle</button>
-        <button id="scroll-up">Up</button>
-        <button id="scroll-down">Down</button>
+        <div>
+            <button id="left-click">Left</button>
+            <button id="right-click">Right</button>
+            <button id="middle-click">Middle</button>
+            <button id="scroll-up">Up</button>
+            <button id="scroll-down">Down</button>
+        </div>
+        <div>
+            <button id="move-up">Mup</button>
+            <button id="move-down">Mdown</button>
+            <button id="move-left">Mleft</button>
+            <button id="move-right">Mright</button>
+        </div>
 
         <script src="/socket.io/socket.io.js"></script>
         <script>
+            //mouse buttons
             left = document.querySelector('#left-click');
             middle = document.querySelector('#middle-click');
             right = document.querySelector('#right-click');
             scrollUp = document.querySelector('#scroll-up');
             scrollDown = document.querySelector('#scroll-down');
 
+            //mouse move
+            mup = document.querySelector('#move-up');
+            mdown = document.querySelector('#move-down');
+            mleft = document.querySelector('#move-left');
+            mright = document.querySelector('#move-right');
+
             var socket = io();
+            //mouse buttons
             left.onclick = function(){
                 socket.emit('mouse_click', 'LEFT_CLICK');
             };
@@ -34,6 +50,20 @@
             };
             scrollDown.onclick = function(){
                 socket.emit('mouse_click', 'SCROLL_DOWN');
+            };
+
+            //mouse move
+            mup.onclick = function(){
+                socket.emit('mouse_move', 'MOVE_UP');
+            };
+            mdown.onclick = function(){
+                socket.emit('mouse_move', 'MOVE_DOWN');
+            };
+            mleft.onclick = function(){
+                socket.emit('mouse_move', 'MOVE_LEFT');
+            };
+            mright.onclick = function(){
+                socket.emit('mouse_move', 'MOVE_RIGHT');
             };
 
         </script>
