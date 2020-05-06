@@ -49,9 +49,16 @@ io.on('connection', function(socket){
         else if(move_type === MOVE_RIGHT){
             exec('xdotool mousemove_relative 5 0');
         }
+        else if(move_type['type'] === 'polar'){
+            console.log('polar : ' + move_type['polar'] + ', angle : ' + move_type['distance']);
+        }
         else{
             console.log('unkown mouse move : ' + move_type);
         }
+    });
+
+    socket.on('test', function(test){
+        console.log(test);
     });
 
     socket.on('disconnect', function(){
