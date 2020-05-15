@@ -5,40 +5,12 @@
         <title>Distance control</title>
     </head>
     <body>
-        <div>
-            <button id="left-click">Left</button>
-            <button id="right-click">Right</button>
-            <button id="middle-click">Middle</button>
-            <button id="scroll-up">Up</button>
-            <button id="scroll-down">Down</button>
-        </div>
-        <div>
-            <button id="move-up">Mup</button>
-            <button id="move-down">Mdown</button>
-            <button id="move-left">Mleft</button>
-            <button id="move-right">Mright</button>
-        </div>
         <canvas id="mouse-canvas" width="200" height="200" style="border:1px solid #000000">
         </canvas>
-        <div>
-            <span>Angle : </span>
-            <span id="angle-value"></span>
+        <div class="debug">
         </div>
-        <div>
-            <span>Distance : </span>
-            <span id="distance-value"></span>
-        </div>
-        <div>
-            <span>OffsetX : </span>
-            <span id="offset-x"></span>
-        </div>
-        <div>
-            <span>OffsetY : </span>
-            <span id="offset-y"></span>
-        </div>
-
         <script src="/socket.io/socket.io.js"></script>
-        <script src="/touchpad.js">
+        <script src="/touchpad_2.js">
         </script>
     </body>
 </html>
