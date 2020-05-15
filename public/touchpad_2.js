@@ -2,6 +2,11 @@ var socket = io();
 var canvas = document.querySelector('#mouse-canvas');
 var debug = document.querySelector('.debug');
 
+//canvas.width = document.documentElement.clientWidth;
+//canvas.height = document.documentElement.clientHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
 var isMoving = false;
 var moveAngle = 0;
 var moveDistance = 0;
@@ -9,7 +14,7 @@ var mouseX = 0;
 var mouseY = 0;
 
 function calcDistance(){
-    moveDistancanvase = Math.sqrt(Math.pow((mouseY - canvas.height/2),2) + Math.pow((mouseX - canvas.width/2),2));
+    moveDistance = Math.sqrt(Math.pow((mouseY - canvas.height/2),2) + Math.pow((mouseX - canvas.width/2),2));
     moveAngle = Math.atan((mouseY - canvas.height/2) / (mouseX - canvas.width/2)) * (180/Math.PI);
     if(moveAngle === -90){
         moveAngle = 0;
@@ -61,7 +66,7 @@ canvas.addEventListener('touchstart', function(evt){
             mouseX = evtScroll.touches[0].clientX;
             mouseY = evtScroll.touches[0].clientY;
             calcDistance();
-            if(moveAngle < 170){
+            if(moveAngle < 150){
                 socket.emit('mouse_click', 'SCROLL_UP');
             } else{
                 socket.emit('mouse_click', 'SCROLL_DOWN');
