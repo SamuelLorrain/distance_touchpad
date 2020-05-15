@@ -24,6 +24,9 @@ app.use(express.static('public'));
 
 io.on('connection', function(socket){
     console.log('a user is connected');
+    socket.on('message', function(msg){
+        console.log('message : ', msg);
+    });
     socket.on('mouse_click', function(click_type){
         if(click_type === LEFT_CLICK){
             exec('xdotool click 1');
