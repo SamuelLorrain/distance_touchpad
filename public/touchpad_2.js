@@ -37,6 +37,14 @@ function calcDistance(){
     }
 }
 
+function scrollUp(){
+    if(mouseStartY < mouseY){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 canvas.addEventListener('touchstart', function(evt){
     evt.preventDefault();
     if(evt.touches.length === 1){ // left_click
@@ -78,7 +86,12 @@ canvas.addEventListener('touchstart', function(evt){
             mouseX = evtScroll.touches[0].clientX;
             mouseY = evtScroll.touches[0].clientY;
             calcDistance();
-            if(moveAngle < 150){
+            //if(moveAngle < 150){
+            //    socket.emit('mouse_click', 'SCROLL_UP');
+            //} else{
+            //    socket.emit('mouse_click', 'SCROLL_DOWN');
+            //}
+            if(scrollUp()){
                 socket.emit('mouse_click', 'SCROLL_UP');
             } else{
                 socket.emit('mouse_click', 'SCROLL_DOWN');
