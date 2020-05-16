@@ -35,9 +35,9 @@ io.on('connection', function(socket){
         }else if(click_type === MIDDLE_CLICK){
             exec('xdotool click 2');
         }else if(click_type === SCROLL_UP){
-            exec('xdotool click 4 --repeat 2');
+            exec('xdotool click 4');
         }else if(click_type === SCROLL_DOWN){
-            exec('xdotool click 5 --repeat 2');
+            exec('xdotool click 5');
         }else{
             console.log('unkown mouse click : ' + click_type);
         }
@@ -57,9 +57,9 @@ io.on('connection', function(socket){
             exec('xdotool mousemove_relative 5 0');
         }
         else if(move_type['type'] === 'polar'){
-            console.log('polar : ' + move_type['polar'] + ', distance : ' + move_type['distance']);
+            //console.log('polar : ' + move_type['polar'] + ', distance : ' + move_type['distance']);
             if(move_type['polar'] !== null){
-                exec('xdotool mousemove_relative --polar ' + Math.floor(move_type['polar']) + ' 10');
+                exec('xdotool mousemove_relative --polar ' + Math.floor(move_type['polar']) + ' ' + Math.floor(move_type['distance']));
             }
         }
         else{

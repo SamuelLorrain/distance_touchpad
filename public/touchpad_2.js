@@ -10,25 +10,29 @@ canvas.height = window.innerHeight;
 var isMoving = false;
 var moveAngle = 0;
 var moveDistance = 0;
+var mouseStartX = 0;
+var mouseStartY = 0;
 var mouseX = 0;
 var mouseY = 0;
 
+var sensibility = .25;
+
 function calcDistance(){
-    moveDistance = Math.sqrt(Math.pow((mouseY - canvas.height/2),2) + Math.pow((mouseX - canvas.width/2),2));
-    moveAngle = Math.atan((mouseY - canvas.height/2) / (mouseX - canvas.width/2)) * (180/Math.PI);
+    moveDistance = Math.sqrt(Math.pow((mouseY - mouseStartY),2) + Math.pow((mouseX - mouseStartX),2)) * sensibility;
+    moveAngle = Math.atan((mouseY - mouseStartY) / (mouseX - mouseStartX)) * (180/Math.PI);
     if(moveAngle === -90){
         moveAngle = 0;
     }
-    if(mouseX >= canvas.width/2 && mouseY > canvas.height/2){ //upper right
+    if(mouseX >= mouseStartX && mouseY > mouseStartY){ //upper right
         moveAngle += 90;
     }
-    else if(mouseX > canvas.width/2 && mouseY < canvas.height/2){ //lower right
+    else if(mouseX > mouseStartX && mouseY < mouseStartY){ //lower right
         moveAngle += 90;
     }
-    else if(mouseX < canvas.width/2 && mouseY < canvas.height/2){ //upper left
+    else if(mouseX < mouseStartX && mouseY < mouseStartY){ //upper left
         moveAngle += 180 + 90;
     }
-    else if(mouseX < canvas.width/2 && mouseY > canvas.height/2){ //lower left
+    else if(mouseX < mouseStartX && mouseY > mouseStartY){ //lower left
         moveAngle += 180 + 90;
     }
 }
@@ -36,6 +40,10 @@ function calcDistance(){
 canvas.addEventListener('touchstart', function(evt){
     evt.preventDefault();
     if(evt.touches.length === 1){ // left_click
+
+        mouseStartX = evt.touches[0].clientX;
+        mouseStartY = evt.touches[0].clientY;
+
         canvas.ontouchmove = function(evtMove){ //move
             evtMove.preventDefault();
             isMoving = true;
@@ -60,6 +68,10 @@ canvas.addEventListener('touchstart', function(evt){
         };
     }
     else if(evt.touches.length === 2){ // right_click
+
+        mouseStartX = evt.touches[0].clientX;
+        mouseStartY = evt.touches[0].clientY;
+
         canvas.ontouchmove = function(evtScroll){ //scroll
             evtScroll.preventDefault();
             isMoving = true;
